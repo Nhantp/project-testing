@@ -1,0 +1,131 @@
+.content_add {
+  background-color: white;
+  padding: 48px 0;
+  margin-top: 50px;
+  border-radius: 20px;
+  opacity: 0.92;
+}
+form{ padding: 0 48px}
+label {
+  color: black;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+#previewImage {
+  display: none;
+  width: 250px;
+  height: 250px;
+}
+
+.avt_img {
+  position: relative;
+  overflow: hidden;
+
+}
+
+.avt_overlay {
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  border: 1px solid;
+  text-align: center;
+  margin-top: 0px;
+}
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.form-group {
+  padding-bottom: 20px;
+}
+.form-group input,
+.form-group select {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #DEDEDE;
+  transition: all 0.3s ease-in-out;
+  color: black;
+}
+.form-group input:focus,
+.form-group select:focus {
+  background-color: #ffdd36;
+  border-color: black;
+  outline: none;
+  box-shadow: none;
+
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #DEDEDE;
+  transition: all 0.3s ease-in-out;
+  color: black;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  background-color: #ffdd36;
+  border-color: black;
+  outline: none;
+  box-shadow: none;
+}
+.file-input {
+  position: absolute;
+  top: 0;
+  left:0 ;
+  opacity: 0;
+  width: 250px;
+  height: 250px !important;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .mr-2 {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .btn_action {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .container_add{
+    height: 2000px;
+  }
+
+  .content_add{
+    opacity: 1;
+  }
+}
+.custom1 {
+  text-align: center;
+  margin-top: -48px;
+  margin-bottom: 20px;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 10px;
+
+  background-color: #ffd400;
+  width: 100%;
+}
+

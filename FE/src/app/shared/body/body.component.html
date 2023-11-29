@@ -1,0 +1,52 @@
+<section class="py-5">
+
+  <div #content class="container px-4 px-lg-5 mt-5">
+
+
+    <!-- Check if there are products -->
+    <ng-container *ngIf="getPaginatedProducts().length > 0; else noProducts">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div *ngFor="let product of getPaginatedProducts()">
+          <div class="col mb-5">
+            <div class="card h-100 border-2" style="height: 150px;"> <!-- Set a fixed height for the card -->
+              <!-- Product image-->
+              <img class="card-img-top" src="{{product.imageUrl}}" alt="..." style="object-fit: cover; height: 100%; width: 100%;"/>
+              <!-- Product details-->
+              <div class="card-body p-4" style="height: 150px;"> <!-- Set a fixed height for the card body -->
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 style="font-size: large" class="fw-bolder">{{ product.productName }}</h5>
+                  <!-- Product price-->
+                  <br>
+                  <span style="font-size: larger">{{ formatCurrency(product.sellingPrice) }} VND</span>
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="openDetailsModal(product)">Thông tin sản phẩm</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+
+    <!-- Display text when there are no products -->
+    <ng-template #noProducts>
+      <div class="warning-text">
+        <p>Không Có Sản Phẩm Phù Hợp</p>
+      </div>
+    </ng-template>
+
+  </div>
+  <div class="text-center mt-3">
+    <p>Trang {{ currentPage }} / {{ getTotalPages() }}</p>
+    <!-- Show the previous button only if there is a previous page -->
+    <button class="btn btn-outline-dark mx-2" (click)="goToPreviousPage()" [hidden]="!canGoToPreviousPage()">Trước</button>
+
+    <!-- Show the next button only if there is a next page -->
+    <button class="btn btn-outline-dark mx-2" (click)="goToNextPage()" [hidden]="!canGoToNextPage()">Sau</button>
+
+  </div>
+</section>

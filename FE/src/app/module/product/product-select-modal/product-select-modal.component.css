@@ -1,0 +1,54 @@
+/*body{*/
+/*  border: black 2px;*/
+/*}*/
+border{
+  margin: 30px;
+}
+button{
+  margin: 15px 30px 15px 15px;
+}
+.table-cutomers{
+  margin: 50px 200px 0px 200px;
+}
+.table table-striped{
+  margin: 30px;
+}
+
+h2{
+  color: black;
+  size: 35px;
+  font-family: Arial, serif;
+  font-weight: bold;
+}
+.header{
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 20px ;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: #ffd400;
+}
+.modal-dialog{
+  max-width: 1000px;
+}
+.modal-footer{
+  width: max-content;
+  text-align: center;
+}
+.modal-button{
+  text-align: center;
+}
+.custom-button{
+  margin-left: -66%;
+  width: 26%;
+  height: 40px;
+  font-size: 0.9em;
+  padding: 0 0;
+  margin-bottom: 10px;
+  margin-top: -2px;
+}
+.hover:hover {
+  background-color: lightgray;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

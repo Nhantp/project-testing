@@ -1,0 +1,108 @@
+
+.banner {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: block;
+  height: 2cm; /* Chiều dọc là 2cm */
+  overflow: hidden; /* Ẩn nội dung vượt quá kích thước */
+}
+
+.navbar {
+  background-color: #ffd400; /* Đặt màu nền thành màu vàng */
+  margin: auto;
+}
+
+.navbar-nav {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar-nav .nav-item {
+  flex: 1;
+  text-align: center;
+  font-size: large;
+}
+
+.searchbar {
+  flex: 1;
+  margin: auto;
+  /*justify-content: flex-start;*/
+  /*width: 5cm;*/
+}
+
+.form-control {
+  /*width: 50%;*/
+  /*margin-left: 6cm;*/
+  width: 80%;
+}
+
+.navbar-brand {
+  margin-left: 6cm;
+}
+
+.user-info-container {
+  font-family: 'Arial', sans-serif;
+  margin: 10px;
+}
+
+.profile-link {
+  text-decoration: none;
+}
+
+.greeting-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.highlight-text {
+  color: #3498db; /* or any color you prefer */
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.logout-button {
+  background-color: #e74c3c; /* Red color for the button */
+  color: #fff; /* White text color */
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 15px; /* Add margin to the left */
+}
+
+
+.nav-item.active-link a {
+  background-color: black; /* Highlight color for active item */
+  color: #fff; /* Text color for active item */
+}
+
+.nav-item:hover {
+  background-color: #ffc107;
+}
+.navbar-nav .nav-item .nav-link {
+  white-space: nowrap;
+}
+
+/*CSS của mạnh*/
+.func-tab{
+  margin-top: 18px;
+}
+
+div.col-12{
+  height:150px;
+}
+@media screen and (max-width: 1086px){
+  /*div.manh-nav{*/
+  /*  height: 148px;*/
+  /*}*/
+  div.manh-nav input{
+    width: 70%;
+  }
+nav button.navbar-toggler {
+  align-self: center;
+}
+}
+

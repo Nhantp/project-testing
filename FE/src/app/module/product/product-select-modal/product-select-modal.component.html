@@ -1,0 +1,128 @@
+<meta charset="UTF-8">
+<title>Chọn sản phẩm</title>
+<button type="button" (click)="getProductList('','','','','',true, isOnSaleScreen)" class="btn btn-outline-primary custom-button" data-bs-toggle="modal" data-bs-target="#myModal">
+  Chọn sản phẩm
+</button>
+<!-- The Modal -->
+<ng-container *ngIf="products">
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="border header"><h2>Chọn Sản Phẩm</h2></div>
+        <form [formGroup]="searchForm" class="row g-3 mt-0 align-items-center">
+          <div class="modal-header">
+            <div class="border">
+              <div class="mb-3">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="input-group align-items-center">
+                        <label class="me-2" style="font-weight: bold"> Tìm Kiếm Theo: </label>
+                        <div class="col-6 col-md-6 col-lg-4 dropdown mt-2">
+                          <select class="btn dropdown-toggle w-100 smaller-font" id="sellingPrice" name="sellingPrice"
+                                  aria-expanded="false" style="font-weight: bold" #sellingPrice>
+                            <option value="">Mức giá (VND)</option>
+                            <option value="0-1999999">Mức giá: 0 - 1,999,999</option>
+                            <option value="2000000-4999999">Mức giá: 2,000,000 - 4,999,999</option>
+                            <option value="5000000-9999999">Mức giá: 5,000,000 - 9,999,999</option>
+                            <option value="10000000-19999999">Mức giá: 10,000,000 - 19,999,999</option>
+                            <option value="20000000-29999999">Mức giá: 20,000,000 - 29,999,999</option>
+                            <option value="30000000-100000000">Mức giá: 30,000,000 trở lên</option>
+                          </select>
+                        </div>
+                        <input type="text" class="form-control custom-width-35" placeholder="Tìm Tên Sản Phẩm "  #productName>
+                        <input type="text" class="form-control custom-width-35" placeholder="Tìm CPU"  #productCpu>
+                        <button (click)="getProductList('','','','','',true, false)" class="btn btn-outline-dark m-2 ">Tìm Kiếm</button>
+                      </div>
+
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row smaller-font">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="new-material">
+              <thead id="navbar-sticky">
+              <tr>
+                <th class="col-1 col-md-1 col-lg-1">STT</th>
+                <th class="col-1 col-md-1 col-lg-3 ">Tên Hàng Hoá
+                  <button style="border: none; background: white; margin-left: 2px"
+                          (click)="getProductList('','','','','',true, false)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-sort-up"
+                         viewBox="0 0 16 16">
+                      <path
+                        d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                    </svg>
+                  </button>
+                  <button style="border: none; background: white"
+                          (click)="getProductList('','','','','',true, false)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-sort-down" viewBox="0 0 16 16">
+                      <path
+                        d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                    </svg>
+                  </button>
+                </th>
+                <th *ngIf="!isOnInput" class="col-1 col-md-1 col-lg-3">Giá bán (VND)
+                  <button style="border: none; background: white"
+                          (click)="getProductList('','','','','',true, false)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up"
+                         viewBox="0 0 16 16">
+                      <path
+                        d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                    </svg>
+                  </button>
+                  <button style="border: none; background: white"
+                          (click)="getProductList('','','','','',true, false)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-sort-down" viewBox="0 0 16 16">
+                      <path
+                        d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                    </svg>
+                  </button>
+                </th>
+
+                <th *ngIf="isOnInput" class="col-2 col-md-2 col-lg-2">Giá nhập (VND)</th>
+
+                <th class="col-2 col-md-2 col-lg-2">CPU</th>
+                <th class="col-1 col-md-1 col-lg-1">Lưu Trữ</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let product of products; let i = index" (click)="findByIdProduct(product.productId)" class="hover" data-bs-dismiss="modal">
+                <td>{{i + 1}}</td>
+                <td>{{product.productName}}</td>
+                <td *ngIf="!isOnInput">{{product.sellingPrice | number:'1.0-0'}}</td>
+                <td *ngIf="isOnInput">{{product.costPrice}}</td>
+                <td>{{product.productCpu}}</td>
+                <td>{{product.productStorage}}</td>
+              </tr>
+              <tr *ngIf="products.length===0" class="alert alert-warning">
+                <td colspan="8" style="color: red; text-align: center">Dữ liệu không có, vui lòng tìm kiếm lại</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center; margin-left: -250px ">
+            <div *ngIf="totalPages > 1">
+              <label style="margin-left: 540px">
+                <button type="button" class="btn btn-outline-primary" style="margin: 5px" [disabled]="currentPage === 0" (click)="onPrevPage()">Trước</button>
+                <a>{{currentPage + 1}}/{{totalPages}}</a>
+                <button type="button" class="btn btn-outline-primary" style="margin: 5px" [disabled]="(currentPage+1) === totalPages" (click)="onNextPage()">sau</button>
+              </label>
+
+              <button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" style="margin-left: 300px; margin-right: -350px">Thoát</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

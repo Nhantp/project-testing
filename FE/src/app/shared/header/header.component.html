@@ -1,0 +1,124 @@
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/10/banner/PK-iPhone-15-1200-44-1200x44.png"
+        class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/09/banner/IP15-1200-44-1200x44.png"
+        class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/10/banner/DH-Ty-Ty-1200-44-1200x44.png"
+        class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <!--  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">-->
+  <!--          <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+  <!--          <span class="visually-hidden">Previous</span>-->
+  <!--  </button>-->
+  <!--  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">-->
+  <!--          <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+  <!--          <span class="visually-hidden">Next</span>-->
+  <!--  </button>-->
+</div>
+<div class="container-fluid manh-nav" style="background-color: #ffd400">
+  <div class="row">
+    <div class="col-12">
+      <div class="row mt-3 mb-2">
+        <div class="col-2 text-end">
+          <img style="width: 240px" src="/assets/images/logo1.png" alt="" [hidden]="isLoggedIn">
+          <a href="./home">
+            <img style="width: 240px"
+                 *ngIf="userRole=='ADMIN'||userRole=='SALE'||userRole=='BUSINESS'||userRole=='STORAGE'"
+                 src="/assets/images/logo1.png">
+          </a>
+        </div>
+        <div class="col text-center mt-2">
+          <div class="input-group" *ngIf="showSearchInput">
+            <input  class="form-control" type="search" placeholder="bạn tìm gì..."
+                   aria-label="Search" [(ngModel)]="searchQuery" (keydown.enter)="onSearch()"><span
+            class="input-group-text" style="cursor: pointer;" (click)="onSearch()">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </span>
+          </div>
+        </div>
+        <div class="col-2 text-end">
+          <div [hidden]="!isLoggedIn" class="dropdown mt-2">
+            <span class="greeting-text">Xin chào: <span
+              class="highlight-text">{{employeeInfo.nameEmployee}}</span></span>
+            <button style="background-color: #ffd400;border:none" class="btn btn-secondary dropdown-toggle"
+                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="profile">Thông tin tài khoản</a></li>
+              <li>
+                <button class="dropdown-item" (click)="logOut()">Đăng xuất</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="row  func-tab" [ngClass]="{'func-tab': !showSearchInput}">
+        <div class="col">
+
+          <!--          các nút chức năng-->
+          <nav class="navbar navbar-expand-xl navbar-light navbar-expand-xl py-0 text-end-lg">
+            <div class="container-lg">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                      aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav flex-fill">
+                  <li *ngIf="userRole=='ADMIN'||userRole=='BUSINESS'||userRole=='STORAGE'||userRole=='SALE'" class="nav-item"
+                      [routerLink]="['product']" routerLinkActive="active-link">
+                    <a class="nav-link" routerLink='product'><i class="fa fa-tablet"></i> Quản lý SP
+                    </a>
+                  </li>
+                  <li *ngIf="userRole=='ADMIN'||userRole=='SALE'" class="nav-item"
+                      [routerLink]="['payment']" routerLinkActive="active-link">
+                    <a class="nav-link" routerLink="payment"><i class="fa fa-calculator" aria-hidden="true"></i>
+                      Bán hàng</a>
+                  </li>
+                  <li *ngIf="userRole=='ADMIN'||userRole=='SALE'||userRole=='BUSINESS'" class="nav-item"
+                      [routerLink]="['managerPurchaseHistory']" routerLinkActive="active-link">
+                    <a class="nav-link" routerLink="managerPurchaseHistory"><i class="fa fa-history"
+                                                                               aria-hidden="true"></i>
+                      LS bán hàng</a>
+                  </li>
+                  <li *ngIf="userRole=='ADMIN'||userRole=='BUSINESS'" class="nav-item" [routerLink]="['report']"
+                      routerLinkActive="active-link">
+                    <a class="nav-link" routerLink='report'><i class="fa fa-area-chart" aria-hidden="true"></i> Báo cáo</a>
+                  </li>
+                  <li *ngIf="userRole=='ADMIN'||userRole=='STORAGE'" class="nav-item active"
+                      [routerLink]="['input-invoice']"
+                      routerLinkActive="active-link">
+                    <a class="nav-link" routerLink='input-invoice'><i class="fa fa-archive" aria-hidden="true"></i> Nhập
+                      kho</a>
+                  </li>
+                  <li *ngIf="userRole=='ADMIN'||userRole=='STORAGE'||userRole=='BUSINESS'" class="nav-item"
+                      [routerLink]="['supplier']" routerLinkActive="active-link">
+                    <a class="nav-link" routerLink='supplier'> <i class="fa fa-building" aria-hidden="true"></i> NCC</a>
+                  </li>
+                  <li *ngIf="userRole=='ADMIN'" class="nav-item" [routerLink]="['signUp']"
+                      routerLinkActive="active-link">
+                    <a class="nav-link" routerLink='signUp'><i class="fa fa-user-plus" aria-hidden="true"></i> Tạo
+                      Mới</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

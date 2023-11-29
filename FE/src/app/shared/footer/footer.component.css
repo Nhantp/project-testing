@@ -1,0 +1,20 @@
+.information{
+  font-size: 14px;
+}
+.social-icon {
+  font-size: 30px; /* Adjust the size as needed */
+  margin-right: 10px; /* Add some spacing between the icons */
+}
+
+.facebook-icon {
+  color: #1877f2; /* Facebook blue color */
+}
+
+.youtube-icon {
+  color: red; /* Custom color for YouTube */
+}
+
+.social-icon:hover {
+  color: green; /* Change color on hover if needed */
+}
+

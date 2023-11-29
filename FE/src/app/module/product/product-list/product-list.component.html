@@ -1,0 +1,177 @@
+<div style="width: 80%;height: 90%; margin: 10px auto; position: relative" id="view" #view>
+  <div style="border: 5px solid rgb(255, 212, 0);border-radius:10px;">
+  <div class="container-fluid mt-3" style="width: 100%; height: 90%">
+    <div class="row text-center header">
+      <h1 class="mt-3"><i class="fa fa-tablet me-3"></i> Danh sách sản phẩm</h1>
+    </div>
+    <div class="row mt-3 mb-3">
+      <form [formGroup]="searchForm" class="row g-3 mt-0 align-items-center" (ngSubmit)="searchProductList()">
+        <div class="col-6 col-md-6 col-lg-2 dropdown mt-2">
+          <select class="btn dropdown-toggle w-100 smaller-font" id="brandName" name="brandName"
+                  aria-expanded="false" style="font-weight: bold" formControlName="brand" #brandName>
+            <option value="">Hãng</option>
+            <option *ngFor="let b of brands" ngValue="{{b.brandName}}">{{b.brandName}}</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-6 col-lg-4 dropdown mt-2">
+          <select class="btn dropdown-toggle w-100 smaller-font" id="sellingPrice" name="sellingPrice"
+                  aria-expanded="false" style="font-weight: bold" formControlName="price" #sellingPrice>
+            <option value="">Mức giá (VND)</option>
+            <option value="0-1999999">Giá: 0 - 1,999,999</option>
+            <option value="2000000-4999999">Giá: 2,000,000 - 4,999,999</option>
+            <option value="5000000-9999999">Giá: 5,000,000 - 9,999,999</option>
+            <option value="10000000-19999999">Giá: 10,000,000 - 19,999,999</option>
+            <option value="20000000-29999999">Giá: 20,000,000 - 29,999,999</option>
+            <option value="30000000-100000000">Giá: 30,000,000 trở lên</option>
+          </select>
+        </div>
+        <div class="col-10 col-md-8 col-lg-3 mt-2">
+          <input type="text" placeholder="Nhập tên hàng và ấn tìm" class="form-control smaller-font"
+                 aria-label="Product search" id="productName" formControlName="name" name="productName"
+                 #productName>
+          <p style="color: red"
+             *ngIf="searchForm.controls.name.hasError('maxlength') && searchForm.controls.productName.touched">
+            Tên cần tìm không được vượt quá 30 ký tự</p>
+        </div>
+        <div class="col-2 col-md-1 col-lg-1 mt-2 text-end">
+          <button class="ms-2 search-icon" style="float: left" [disabled]="!searchForm.valid" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                 class="bi bi-search" viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="col-12 col-md-3 col-lg-2 mt-2">
+          <button type="button" class="btn btn-outline-warning w-100 smaller-button2" *ngIf="userRole=='ADMIN'||userRole=='BUSINESS'||userRole=='STORAGE'">
+            Thêm mới
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="row smaller-font">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover" id="new-material">
+          <thead id="navbar-sticky">
+          <tr>
+            <th class="col-1 col-md-1 col-lg-1">STT</th>
+            <th class="col-2 col-md-2 col-lg-2 ">Tên hàng hóa
+              <button style="border: none; background: white"
+                      (click)="getProductList(brand,price,name,'name_product',true)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up"
+                     viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                </svg>
+              </button>
+              <button style="border: none; background: white"
+                      (click)="getProductList(brand,price,name,'name_product',false)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-sort-down" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                </svg>
+              </button>
+            </th>
+            <th class="col-1 col-md-1 col-lg-1">Hãng</th>
+            <th class="col-2 col-md-2 col-lg-2">Giá bán (VND)
+              <button style="border: none; background: white"
+                      (click)="getProductList(brand,price,name,'selling_price_product',true)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up"
+                     viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                </svg>
+              </button>
+              <button style="border: none; background: white"
+                      (click)="getProductList(brand,price,name,'selling_price_product',false)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-sort-down" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                </svg>
+              </button>
+            </th>
+            <th class="col-2 col-md-2 col-lg-2">CPU</th>
+            <th class="col-1 col-md-1 col-lg-1">Lưu trữ</th>
+            <th class="col-1 col-md-1 col-lg-1">Số lượng (cái)</th>
+            <th class="col-2 col-md-2 col-lg-2" *ngIf="userRole=='ADMIN'||userRole=='BUSINESS'||userRole=='STORAGE'">Hành động</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products; let i = index" >
+              <td  [ngStyle]="{'background-color':product.isPublish?'none':'orange'}" >
+                {{i + 1}}
+              </td>
+              <td>{{product.productName}}  <span *ngIf="!product.isPublish" class="badge bg-secondary">Chưa bán</span></td>
+              <td>{{product.brand.brandName}}</td>
+              <td>{{product.sellingPrice | number:'1.0-0'}}</td>
+              <td>{{product.productCpu}}</td>
+              <td>{{product.productStorage}}</td>
+              <td>{{product.quantity}}</td>
+              <td *ngIf="userRole=='ADMIN'||userRole=='BUSINESS'||userRole=='STORAGE'">
+                <div class="d-flex flex-column flex-md-row">
+                  <button type="button" class="btn btn-outline-danger smaller-button me-md-2 mb-2 mb-md-0"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          (click)="findProduct(product.productId, product.productName)">
+                    Xóa
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary smaller-button me-md-2 mb-2 mb-md-0">Chỉnh sửa
+                  </button>
+                </div>
+              </td>
+
+            </tr>
+
+          <tr *ngIf="products.length===0">
+            <td colspan="8" style="color: red; text-align: center">KHÔNG TÌM THẤY DỮ LIỆU CẦN TÌM</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row smaller-font mb-3">
+        <div class="col-5">
+        </div>
+        <div class="col-5" *ngIf="totalPages > 1">
+          <button class="btn btn-outline-primary smaller-button2" [disabled]="currentPage === 0" (click)="onPrevPage()">
+            Trước
+          </button>
+          <span>   {{currentPage + 1}}/{{totalPages}}   </span>
+          <button class="btn btn-outline-primary smaller-button2" [disabled]="(currentPage+1) === totalPages"
+                  (click)="onNextPage()">
+              Sau
+          </button>
+        </div>
+        <div class="col-2 ">
+          <button class="btn btn-outline-dark smaller-button2" style="float: right" [routerLink]="['/home']">Thoát
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header pb-0">
+        <h2 class="modal-title pb-0 mb-0" id="exampleModalLabel">Xác nhận: </h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn xóa sản phẩm <strong>{{chooseProductName}}</strong> ?
+        <br>
+        Lưu ý: Hành động này  sẽ không thể hoàn tác
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-outline-danger" (click)="doDelete(chooseProductId)"
+                data-bs-dismiss="modal">Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--    end modal-->

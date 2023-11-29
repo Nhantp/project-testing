@@ -1,0 +1,95 @@
+.header, .footer {
+  background-color: #ffd400;
+  margin: 5px 3px 3px;
+}
+
+td{
+  font-size: 15px;
+  height: 40px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.td1{
+  height: 60px;
+  width: 400px;
+  float: left;
+  color: red;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+td input{width: 400px;
+  height: 40px;
+  border: black solid 1px;
+}
+td textarea{
+  height: 80px;
+  width: 400px;
+  resize: none;
+  border: black solid 1px;
+}
+button{
+  float: right;
+  margin: 3px;
+  font-size: 15px;
+  padding: 1px;
+}
+div.alert-danger{
+  justify-content: left;
+  height: 25px;
+  width: 400px;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+  float: left;
+  display: inline;
+}
+
+.td_title{
+  font-weight: bold;
+  height: 20px;
+  font-size: 15px;
+  text-align: left;
+  width: 400px;
+  display: block;
+  margin-top: 10px;
+}
+.success-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  display: none;
+  width: 800px;
+  text-align: center;
+  font-size: xx-large;
+  height: 60px;
+}
+.border{
+  padding: 5px;
+  border-radius: 10px;
+}
+.border_radius{
+  border-radius: 10px;
+}
+.header h1{
+  font-size: 34px;
+  margin: auto;
+  font-weight: 500;
+}
+.header {
+  background-color: #ffd400;
+  border-radius: 10px;
+  height: 74px;
+  margin: auto;
+}
+.required-marker {
+  color: red;
+  padding: 0;
+  margin: 0;
+}

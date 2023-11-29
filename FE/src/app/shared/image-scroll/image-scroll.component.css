@@ -1,0 +1,29 @@
+.image-container-left {
+  position: fixed;
+  top: 4.5cm;
+  bottom: 5cm;
+  left: 1cm;
+  width: 6.7cm; /* Điều chỉnh chiều rộng của container hình ảnh tùy thích */
+  overflow-y: clip;
+}
+
+.image-container-left img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 100px auto; /* Điều chỉnh khoảng cách giữa hai hình ảnh */
+}
+.image-container-right {
+  position: fixed;
+  top: 4.5cm;
+  bottom: 5cm;
+  right: 1.5cm;
+  width: 7cm; /* Điều chỉnh chiều rộng của container hình ảnh tùy thích */
+  overflow-y: clip;
+}
+.image-container-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 100px auto; /* Điều chỉnh khoảng cách giữa hai hình ảnh */
+}

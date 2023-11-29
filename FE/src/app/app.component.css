@@ -1,0 +1,10 @@
+/* header.component.css */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Adjust the z-index based on your layout needs */
+  background-color: #ffffff; /* Set your desired background color */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for a subtle effect */
+}

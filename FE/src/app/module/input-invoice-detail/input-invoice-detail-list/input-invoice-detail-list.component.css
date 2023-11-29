@@ -1,0 +1,151 @@
+td, tr {
+  text-align: center;
+}
+tr{
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+}
+td{
+  border: 1px solid lightgray;
+}
+table{
+  border: 1px solid lightgray;
+}
+tr:hover,
+tr:hover div{
+  background-color: #e9ecef;
+}
+
+td{
+  vertical-align: middle;
+}
+
+.header {
+  background-color: #ffd400;
+  border-radius: 10px;
+  height: 74px;
+  margin: auto;
+}
+.header h1{
+  font-size: 34px;
+  margin: auto;
+  font-weight: 500;
+}
+div.search-bar input.col {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+div.main-content{
+  border: 5px solid rgb(255, 212, 0);
+  border-radius:10px;
+}
+
+button.add-new.responsive-icon {
+  margin-top: 11px;
+}
+
+div.paging-bar button {
+  width: 100px;
+  margin: 0 5px;
+}
+
+button.responsive-icon,
+button.responsive-icon-add,
+button.responsive-button-search{
+  display: none;
+}
+.responsive-button-add,
+.responsive-button-search{
+  width: 140px;
+}
+button.responsive-icon-search,
+button.sort{
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+}
+button.responsive-icon-search svg {
+  margin-left: 8px;
+}
+button.responsive-icon-search:hover svg,
+button.responsive-icon-add:hover svg{
+  height: 38px;
+  width: 38px;
+}
+button.sort{
+  display: block;
+  float: right;
+  margin-right: 5px;
+}
+button.sort:hover svg {
+  height: 110%;
+}
+
+
+@media screen and (max-width: 1400px) {
+  button.responsive-icon-add{
+    display: inline-block;
+  }
+  button.responsive-button-add{
+    display: none;
+  }
+  button.responsive-icon-add{
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    margin: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  td {
+    height: 60px;
+  }
+  button.responsive-button {
+    display: none;
+  }
+  button.responsive-icon
+  {
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    margin: 10px 10px;
+  }
+  button.responsive-icon:hover svg{
+    height: 35px;
+    width: 35px;
+  }
+  /*button.responsive-button-search{*/
+  /*    display: inline-block;*/
+  /*}*/
+  button.responsive-button-add {
+    display: inline-block;
+  }
+  button.responsive-icon-add{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 992px){
+  td {
+    height: 115px;
+  }
+  /*button.responsive-icon-search{*/
+  /*    display: none;*/
+  /*}*/
+  /*button.responsive-button-search{*/
+  /*    display: inline-block;*/
+  /*}*/
+}
+@media screen and (max-width: 768px) {
+  td.responsive-field,
+  th.responsive-field{
+    display: none;
+  }
+  table.table-list{
+    position: relative;
+    right: 15px;
+  }
+}

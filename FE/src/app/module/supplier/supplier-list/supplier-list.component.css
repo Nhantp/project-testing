@@ -1,0 +1,148 @@
+@media screen and (max-width: 768px) {
+  .custom99{
+    /*margin-top: 10px !important;*/
+  }
+}
+@media screen and (max-width: 1200px) {
+  .responsive-icon {
+    display: block;
+  }
+  .default-icon{
+    display: none;
+  }
+  tbody tr td:last-child button{
+    border: none;
+    background: none;
+    padding: 10px 0px;
+  }
+  .add-supplier{
+    float: right;
+  }
+
+
+}
+@media screen and (min-width: 1201px) {
+
+  .responsive-icon {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 992px)  and (min-width:766px) {
+
+  .parentP {
+    position: relative;
+
+  }
+
+  .childP {
+    position: absolute;
+    top: 200px;
+    right: 45px;
+
+  }
+}
+
+@media screen and (max-width: 765px)  and (min-width:500px) {
+
+  .fw {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 766px)  {
+
+  .parentP {
+    position: relative;
+
+  }
+
+  .childP {
+    position: absolute;
+    top: 22.6%;
+    right: 11%;
+
+  }
+}
+
+
+.custom-width-35 {
+  width: 35%;
+}
+.paging{
+  display: inline-block;
+  float: left;
+}
+.cancel{
+  display: inline-block;
+  float: right;
+}
+/*.custom2{*/
+/*  margin-left: 20px ;*/
+/*  margin-right: 20px;*/
+/*  padding: 20px;*/
+/*}*/
+.custom1{
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 20px ;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: #ffd400;
+}
+a{
+  text-decoration: none
+}
+.custom3{
+  margin-left: 20px ;
+  margin-right: 20px;
+  padding: 20px;
+  text-align: right;
+}
+
+strong{
+  color: red;
+}
+
+.search-icon{
+  border: none;
+  background: white;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.sort-icon{
+  border: none;
+  background: white;
+
+}
+
+button.search-icon:hover svg{
+  height: 35px;
+  width: 35px;
+}
+
+
+.show {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 0.15s linear;
+}
+
+strong{
+  color: red;
+}
+
+
+.header {
+  background-color: #ffd400;
+  border-radius: 10px;
+  height: 74px;
+  margin: auto;
+}
+.header h1{
+  font-size: 34px;
+  margin: auto;
+  font-weight: 500;
+}

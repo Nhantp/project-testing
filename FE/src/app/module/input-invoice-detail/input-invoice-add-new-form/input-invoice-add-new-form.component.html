@@ -1,0 +1,103 @@
+<div style="width: 80%;height: 90%; margin: 10px auto; position: relative">
+<div class="container-fluid parent ">
+  <div class="border-bottom text-center header mt-3">
+    <h1> <i class="fa fa-archive me-3 mt-3" aria-hidden="true"></i>Nhập kho</h1>
+  </div>
+
+  <div class="row">
+    <div class="col offset-sm-1 offset-lg-0">
+      <div class="row">
+        <div class="col ms-2">
+          <div class="row">
+            <div class="add-form col">
+              <div class="row">
+                <button [disabled]="isNewProduct" class="me-2 col-sm-10 col-md-auto select-option btn btn-outline-secondary"
+                        data-bs-toggle="modal" data-bs-target="#myModal">
+                  Chọn hàng đã từng nhập kho
+                </button>
+                <button [disabled]="isNewProduct"  class="col-sm-10 col-md-auto select-option btn btn-outline-secondary">Quét mã QR</button>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="add-new-confirm"><span class="error">Lưu ý(*)</span> Chọn vào đây nếu là sản phẩm mới</label>
+                  <input class="ms-2" id="add-new-confirm" [checked]="isNewProduct" (click)="toggleIsNewProduct()" type="radio">
+                </div>
+              </div>
+
+              <div class="container" style="margin-right: 100px">
+                <form [formGroup]="inputDetailForm" (ngSubmit)="addToList()">
+
+                <input hidden name="productId" formControlName="productId" type="number" >
+                <div class="row mb-3">
+                  <div class="col text-end fw-bold">Tên hàng <span class="must-have">(*)</span></div>
+                  <div class="col-8"><input [readOnly]="!isNewProduct" type="text" class="form-control" formControlName="productName" ></div>
+                </div>
+                  <div class="row" style="height: 35px">
+                    <p class="error text-end"
+                       *ngIf="inputDetailForm.controls.productName.hasError('required')
+                        && inputDetailForm.controls.productName.touched">
+                      Tên hàng không được để trống</p>
+                    <p class="error text-end" *ngIf="errorResponse && productNameHasError">
+                      Lanh ghê rứa fen, chưa có tên sản phẩm, chọn thêm mới để nhập, không thì nhấp chọn sản phẩm đã nhập
+                    </p>
+                  </div>
+                <div class="row">
+                  <div class="col text-end fw-bold">Giá nhập <span class="must-have">(*)</span></div>
+                  <div class="col-8" style="position: relative"><input type="number" class="form-control" formControlName="costPrice" ><span class="ms-2" style="position: absolute;
+  top: 8px;
+  right: 8px;
+  font-weight: bold;
+  margin-right: 35px;
+">VND</span></div>
+
+                </div>
+                  <div class="row" style="height: 35px">
+                    <p class="error text-end"
+                       *ngIf="inputDetailForm.controls.costPrice.hasError('min')
+                        && inputDetailForm.controls.costPrice.touched">
+                      Giá phải lớn hơn 0</p>
+                    <p class="error text-end"
+                       *ngIf="inputDetailForm.controls.costPrice.hasError('required')
+                        && inputDetailForm.controls.costPrice.touched">
+                      Giá không được để trống</p>
+                  </div>
+                <div class="row">
+                  <div class="col fw-bold text-end">Số lượng nhập<span class="must-have" >(*)</span></div>
+                  <div class="col-8"><input type="number" formControlName="quantity" class="form-control" ></div>
+                </div>
+                  <div class="row" style="height: 35px">
+                    <p class="error text-end"
+                       *ngIf="inputDetailForm.controls.quantity.hasError('min')
+                        && inputDetailForm.controls.quantity.touched">
+                      Số lượng phải lớn hơn 0</p>
+                    <p class="error text-end"
+                       *ngIf="inputDetailForm.controls.quantity.hasError('required')
+                        && inputDetailForm.controls.quantity.touched">
+                      Số lượng không được để trống</p>
+                  </div>
+                <div class="action row">
+                  <div class="col text-center">
+                    <button class="btn btn-outline-warning mb-5" style="color: black" type="submit" [disabled]="inputDetailForm.invalid
+                  || inputDetailForm.get('productName').errors || inputDetailForm.get('quantity').errors
+|| inputDetailForm.get('costPrice').errors">
+                      Thêm vào phiếu nhập
+                    </button>
+                  </div>
+                </div>
+
+              </form>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-7">
+      <app-input-invoice-preview-list (reloadProductListModalSignal)="reloadProductListModal($event)" [item]="productToListValidated"></app-input-invoice-preview-list>
+    </div>
+  </div>
+</div>
+</div>
+<app-product-select-modal [reload]="reload" (productEmitted)="chooseProductInPast($event)"></app-product-select-modal>

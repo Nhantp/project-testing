@@ -1,0 +1,88 @@
+  <meta charset="UTF-8">
+<title>Màn Hình Khách Hàng Có Sẵn</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Button to Open the Modal -->
+<button type="button" (click)="getListCustomer(0)" class="btn custom-button hover-effect btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+  Chọn khách hàng cũ
+</button>
+<!-- The Modal -->
+<ng-container *ngIf="customers">
+<div class="modal" id="myModal1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="border header"><h2>Chọn Khách Hàng</h2></div>
+      <div class="modal-header">
+        <div class="border">
+          <div class="mb-3">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="input-group align-items-center">
+                    <label class="me-2"><b>Tìm kiếm theo:</b></label>
+                    <select class="form-select me-2 custom-width-35" [(ngModel)]="option">
+                      <option  value="">---------!</option>
+                      <option  value="name">Tên</option>
+                      <option  value="age">Tuổi</option>
+                      <option  value="address">Địa chỉ</option>
+                    </select>
+                    <input #search type="text" class="form-control custom-width-35" placeholder="Tìm kiếm ">
+                    <input #numberPhone type="number" class="form-control custom-width-35" placeholder="Tìm kiếm theo số điện thoại">
+                    <button (click)="searchCustomer(search, numberPhone)" class="btn btn-outline-dark m-2 ">Tìm kiếm</button>
+                  </div>
+                </div>
+                <div class="col-2">
+                </div>
+                <div class="col-2">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table class="table table-striped table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Họ Và Tên</th>
+            <th scope="col">Số Điện Thoại</th>
+            <th scope="col">Dịa Chỉ</th>
+            <th scope="col">Tuổi</th>
+            <th scope="col">Email</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cs of customers; index as i" (click)="findByIdCustomer(cs.customerId)" class="hover" data-bs-dismiss="modal">
+<!--                <th scope="row">{{i+1}}</th>-->
+                <th scope="row">{{cs.customerId}}</th>
+                <td>{{cs.customerName}}</td>
+                <td>{{cs.customerPhone}}</td>
+                <td>{{cs.customerAddress}}</td>
+                <td>{{cs.customerAge}}</td>
+                <td>{{cs.customerEmail}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+<!--       Modal footer-->
+              <div class="modal-footer" style="width: 1000px; margin-left: -50px">
+                <div>
+                  <div *ngIf="page.totalPages > 0">
+                    <button name="{{page.number}}}" (click)="getListCustomer(page.number - 1)" [disabled]="page.first"  type="button" class="btn btn-outline-primary" style="margin: 5px">Trước</button>
+                  <a>{{page.number+1}}/{{page.totalPages}}</a>
+                    <button (click)="getListCustomer(page.number + 1)" [disabled]="page.last" type="button" class="btn btn-outline-primary" style="margin: 5px">sau</button>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" style="margin-left: 300px;">Thoát</button>
+                  </div>
+                </div>
+              </div>
+    </div>
+  </div>
+</div>
+</ng-container>
+
+

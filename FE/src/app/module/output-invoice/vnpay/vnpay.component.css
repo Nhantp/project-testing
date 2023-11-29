@@ -1,0 +1,80 @@
+.container{
+  font-size: 16px;
+}
+.form-group {
+  position: relative;
+
+}
+
+.error-message{
+  color: red;
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.error-message.active {
+  visibility: visible;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 20px; /* Điều chỉnh khoảng cách giữa các form group */
+}
+
+.error-message {
+  color: red;
+  visibility: hidden;
+  position: absolute;
+  top: 100%; /* Điều chỉnh khoảng cách từ form group xuống thông báo lỗi */
+  transform: translateY(5px); /* Điều chỉnh khoảng cách thêm, nếu cần */
+}
+
+.error-message.active {
+  visibility: visible;
+}
+
+
+
+.payment-card {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.card-title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.error-message {
+  font-size: 14px;
+  visibility: hidden;
+  position: absolute;
+  color: red;
+  margin-left: 5px;
+  margin-bottom: 12px;
+  margin-top: -6px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.error-message.active {
+  visibility: visible;
+}
+

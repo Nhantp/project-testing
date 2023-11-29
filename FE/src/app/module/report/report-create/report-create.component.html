@@ -1,0 +1,64 @@
+<div class="container" style="width: 85%;height: 90%; margin: 10px auto; position: relative">
+  <div class="left">
+    <div class="header text-center">
+      <h1><i class="fa fa-area-chart mt-3" aria-hidden="true"></i>Báo cáo doanh số</h1>
+    </div>
+    <div class="chart">
+      <div id="myChart"></div>
+    </div>
+  </div>
+  <div class="right">
+    <form [formGroup]="reportForm" (ngSubmit)="submit()">
+      <div class="borderReport">
+        <label for="fromDate">Từ ngày:</label>
+        <input type="date" id="fromDate" formControlName="fromDate">
+        <p class="text-danger"
+           *ngIf="reportForm.get('fromDate').errors?.required && reportForm.get('fromDate').touched">
+          Không được để trống</p>
+        <p class="text-danger"
+           *ngIf="reportForm.get('fromDate').hasError('invalidDate') && reportForm.get('fromDate').touched">Thời gian
+          không hợp lệ</p>
+
+        <label class="toDate" for="toDate">Đến ngày:</label>
+        <input type="date" id="toDate" formControlName="toDate">
+        <p class="text-danger" *ngIf="reportForm.get('toDate').errors?.required && reportForm.get('toDate').touched">
+          Không được để trống</p>
+        <p class="text-danger" *ngIf="reportForm.get('toDate').hasError('pattern')">Không đúng format</p>
+        <p class="text-danger"
+           *ngIf="reportForm.get('toDate').hasError('invalidDate') && reportForm.get('toDate').touched">Thời gian
+          không hợp lệ</p>
+        <p class="text-danger" *ngIf="reportForm.hasError('dateRange') && reportForm.get('toDate').touched">
+          Lỗi validate
+        </p>
+      </div>
+      <div class="radio-group">
+        <label class="title">Báo cáo:</label>
+        <label class="radio-option">
+          <input type="radio" formControlName="reportType" name="reportType" value="All"
+                 (change)="onReportTypeChange()"> Tất cả
+        </label>
+        <label class="radio-option">
+          <input type="radio" formControlName="reportType" name="reportType" value="MaSp"
+                 (change)="onReportTypeChange()"> Theo mã sản phẩm
+        </label>
+      </div>
+      <div class="form-group col-md-12">
+        <label>Nhập Mã Sản Phẩm :</label>
+        <input type="text" class="d-inline" formControlName="productId">
+        <input type="button" class="d-inline btn btn-outline-secondary" data-bs-toggle="modal"
+               data-bs-target="#myModal" value="Tìm sản phẩm" [disabled]="reportTypeControlAll">
+        <p class="text-danger" *ngIf="reportForm.get('productId').hasError('pattern')">Mã sản phẩm không tồn tại hoặc
+          chưa nhập</p>
+      </div>
+      <div class="btn-submit">
+        <button type="submit" [disabled]="reportForm.invalid" class="btn btn-outline-primary">Xem báo cáo</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="btn-back">
+  <button type="button" class="btn btn-outline-dark " routerLink="/home">Thoát</button>
+</div>
+<app-product-select-modal (productEmitted)="chooseProductInPast($event)"></app-product-select-modal>
+
+

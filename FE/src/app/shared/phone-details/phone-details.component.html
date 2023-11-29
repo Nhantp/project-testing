@@ -1,0 +1,53 @@
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>{{ phoneDetails.productName }}</h2>
+      <div class="product-image">
+        <img [src]="phoneDetails.imageUrl" alt="Phone Image">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="product-details">
+        <div style="font-size: large;">{{phoneDetails.description}}</div>
+        <div style="font-size: larger; margin-top: 1cm;">
+          <p>Thông Tin Sản Phẩm</p>
+          <table class="table">
+            <tbody>
+            <tr>
+              <td>Màn hình:</td>
+              <td>{{phoneDetails.screenSize}}</td>
+            </tr>
+            <tr>
+              <td>Camera sau:</td>
+              <td>{{phoneDetails.backCamera}}</td>
+            </tr>
+            <tr>
+              <td>Camera trước:</td>
+              <td>{{phoneDetails.frontCamera}}</td>
+            </tr>
+            <tr>
+              <td>Chip:</td>
+              <td>{{phoneDetails.productCpu}}</td>
+            </tr>
+            <tr>
+              <td>RAM:</td>
+              <td>{{phoneDetails.productStorage}}</td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="price-highlight">
+          <p style="font-size: 24px; color: #e44d26; text-align: right;">
+            GIÁ BÁN: {{ formatCurrency(phoneDetails.sellingPrice) }} VNĐ
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+

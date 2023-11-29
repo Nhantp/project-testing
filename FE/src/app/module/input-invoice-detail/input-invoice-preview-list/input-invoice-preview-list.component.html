@@ -1,0 +1,91 @@
+<form action="">
+  <div class="container mt-5">
+    <div class="row ">
+      <div class="col"><h2 class="text-center">Phiếu nhập</h2></div>
+    </div>
+    <div class="row mt-4">
+      <div class="col text-center fw-bold mt-2">Nhà cung cấp <span class="must-have">(*)</span></div>
+      <div class="col-6">
+        <input type="text" [value]="supplierName" class="form-control mt-2"
+               readonly>
+        <div [hidden]="isSupplierSelected" class="error mt-3">Nhà cung cấp không được để trống</div>
+      </div>
+      <div class="col">
+        <input type="button" value="Chọn NCC" class="btn btn-outline-dark"
+               data-bs-toggle="modal"
+               data-bs-target="#exampleModal">
+      </div>
+    </div>
+
+
+    <div class="row mt-3">
+      <div class="row">
+        <div class="row justify-content-center">
+          <div class="mt-5 mb-5 fw-bolder fs-5 alert-danger col-8" *ngIf="!haveItemInList">Hiện phiếu nhập đang chưa có gì, bạn vui lòng nhập sản phẩm ở form bên trái</div>
+        </div>
+        <table *ngIf="haveItemInList" class="table table-list table-striped border">
+          <tr>
+            <th>STT</th>
+            <th>Tên hàng</th>
+            <th>Số lượng</th>
+            <th>Đơn giá nhập</th>
+            <th>Tổng tiền</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let item of previewListInputItem;index as i">
+            <td>{{i+1}}</td>
+            <td>{{item.productName}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.costPrice| number:'1.0'}}</td>
+            <td>{{item.costPrice*item.quantity| number:'1.0'}}</td>
+            <td><input type="button"  class="btn btn-outline-danger" data-bs-toggle="modal"  (click)="getProductDelete(i,item.productName)"
+                       data-bs-target="#exampleModal-delete" value="Xóa"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>Tổng</th>
+            <td>{{totalCostOfInvoice| number:'1.0'}}</td>
+            <td>VND</td>
+          </tr>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mb-3">
+      <button [disabled]="!isSupplierSelected || !haveItemInList" style="color: black" (click)="addInputInvoice()" class="btn btn-outline-warning" type="submit">Nhập kho</button>
+      <input [routerLink]="['/input-invoice']" type="button"         class="btn btn-outline-dark"
+                                                                        value="Thoát">
+    </div>
+  </div>
+</form>
+
+<app-select-supplier-modal (supplierEmitted)="chooseSupplier($event)"></app-select-supplier-modal>
+<!--Modal xoa-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận: </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn xóa sản phẩm <strong>{{productToDeleteName}}</strong> khỏi phiếu nhập không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-outline-danger" (click)="dropItem(productToDeleteId)"
+                data-bs-dismiss="modal">Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>

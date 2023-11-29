@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card payment-card">
+        <div class="card-body">
+          <img src="assets/images/vnpay.png" alt="VNPAY Logo" class="logo">
+          <h2 class="card-title">Thanh Toán Đơn Hàng</h2>
+          <form (ngSubmit)="submitOrder()" #register="ngForm">
+            <div class="form-group">
+              <label for="amount" style="margin-left: -90%">Số tiền:</label>
+              <input type="text" class="form-control" id="amount" name="amount" required [(ngModel)]="formattedOrderTotal" disabled>
+            </div>
+            <div class="form-group">
+              <label for="orderInfo" style="margin-left: -75%">Thông tin đơn hàng:</label>
+              <input type="text" class="form-control" id="orderInfo" name="orderInfo" required [(ngModel)]="orderInfo" #info="ngModel" maxlength="100" (input)="validateOrderInfo()">
+              <p class="error-message active" *ngIf="info.touched && errorMessage" style="color: red">
+                {{ errorMessage }}
+              </p>
+            </div>
+
+
+            <div class="button-group">
+              <button type="submit" class="btn btn-outline-primary" [disabled]="register.form.status === 'INVALID'||errorMessage">Thanh toán</button>
+              <button type="submit" routerLink="/payment" class="btn btn-outline-secondary">Quay lại</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

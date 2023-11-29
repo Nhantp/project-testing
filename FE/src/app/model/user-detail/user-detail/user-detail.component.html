@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card card-yellow-border">
+          <div class="card-body card-yellow-border">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-avatar-user-basic-abstract-circle-background-flat-color-icon-png-image_1647265.jpg"
+                alt="Admin" class="rounded-circle" width="150">
+              <div class="mt-3">
+                <h4>{{employeeInfo.user.username}}</h4>
+                <p class="text-secondary mb-1">
+                  {{ employeeInfo.positionEmployee }}
+                </p>
+                <button class="btn btn-outline-success" (click)="openChangePasswordForm()"> Đổi mật khẩu</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3 card-yellow-border">
+          <div class="card-body card-yellow-border">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0" style="color: #ffd400">Thông tin cá nhân</h3>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Họ và tên</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ employeeInfo.nameEmployee }}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Ngày sinh</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ employeeInfo.birthdayEmployee }}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mật khẩu</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ hiddenPassword }}
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ employeeInfo.user.email }}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Số điện thoại</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ employeeInfo.numberPhoneEmployee }}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Địa chỉ</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ employeeInfo.addressEmployee }}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-12">
+                <button class="btn btn-outline-dark" routerLink="/home">Thoát</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

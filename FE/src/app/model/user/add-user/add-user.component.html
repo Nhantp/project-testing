@@ -1,0 +1,143 @@
+<div style="width: 80%;height: 90%; margin: 10px auto; position: relative">
+  <div class="form-body">
+    <div class="row">
+      <div class="form-holder">
+        <div class="form-content">
+          <div class="form-items">
+            <div class="header mt-3">
+              <h1 class="text-center "><i class="fa fa-user-plus me-3" aria-hidden="true"></i>Đăng ký tài khoản</h1>
+            </div>
+
+            <hr>
+            <form class="requires-validation" [formGroup]="formSignUp" (ngSubmit)="onSubmit()">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <label class="form-label">Họ Và Tên</label>
+                  <input formControlName="nameEmployee" type="text" class="form-control" placeholder="Nhập họ và tên">
+                  <div *ngIf="isFieldInvalid('nameEmployee')" class="text-danger">
+
+                    {{ getFieldErrorMessage('nameEmployee') }}
+
+                    <div
+                      *ngIf="formSignUp.get('nameEmployee').hasError('minlength')" class="text-danger">
+                      Tên phải chứa ít nhất 5 ký tự.
+                    </div>
+                    <div *ngIf="formSignUp.get('nameEmployee').hasError('noNumbers')" class="text-danger">
+                      Tên nhân viên không được chứa số.
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+                  <label class="form-label">Mật khẩu</label>
+                  <input formControlName="password" type="password" class="form-control"
+                         placeholder="Nhập mật khẩu" autocomplete="new-password">
+                  <div *ngIf="isFieldInvalid('password')" class="text-danger">
+
+                    {{ getFieldErrorMessage('password') }}
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Địa chỉ</label>
+                  <input formControlName="addressEmployee" type="text" class="form-control"
+                         placeholder="Nhập địa chỉ">
+                  <div *ngIf="isFieldInvalid('addressEmployee')" class="text-danger">
+
+                    {{ getFieldErrorMessage('addressEmployee') }}
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Xác thực mật khẩu</label>
+                  <input formControlName="confirmPassword" type="password" class="form-control"
+                         placeholder="Xác thực lại mật khẩu" autocomplete="new-password">
+                  <div *ngIf="isFieldInvalid('confirmPassword')" class="text-danger">
+
+                    {{ getFieldErrorMessage('confirmPassword') }}
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Quyền hạn</label>
+                  <select formControlName="role" class="form-select">
+                    <option [ngValue]="null">--Chọn vị trí--</option>
+                    <option value="sale">Sale</option>
+                    <option value="business">Business</option>
+                    <option value="storage">Storage</option>
+                  </select>
+                  <div *ngIf="isFieldInvalid('role')" class="text-danger">
+
+                    {{ getFieldErrorMessage('role') }}
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input formControlName="email" type="text" class="form-control" placeholder="...@abc.com">
+                  <div *ngIf="isFieldInvalid('email')" class="text-danger">
+
+                    {{ getFieldErrorMessage('email') }}
+
+                  </div>
+                  <div *ngIf="formSignUp.get('email').hasError('invalidEmail')" class="text-danger">
+                    Email phải đúng định dạng!!
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Tên tài khoản</label>
+                  <input formControlName="username" type="text" class="form-control"
+                         placeholder="Nhập tên tài khoản" autocomplete="username">
+                  <div *ngIf="isFieldInvalid('username')" class="text-danger">
+
+                    {{ getFieldErrorMessage('username') }}
+
+                  </div>
+                  <div
+                    *ngIf="formSignUp.get('username').hasError('minlength')" class="text-danger">
+                    Tên phải chứa ít nhất 5 ký tự.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Ngày sinh</label>
+                  <input formControlName="birthdayEmployee" type="date" class="form-control"
+                         placeholder="Nhập ngày sinh">
+                  <div *ngIf="isFieldInvalid('birthdayEmployee')" class="text-danger">
+
+                    {{ getFieldErrorMessage('birthdayEmployee') }}
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Số điện thoại</label>
+                  <input formControlName="numberPhoneEmployee" type="text" class="form-control"
+                         placeholder="0934xxxxxx">
+                  <div *ngIf="isFieldInvalid('numberPhoneEmployee')" class="text-danger">
+
+                    {{ getFieldErrorMessage('numberPhoneEmployee') }}
+                  </div>
+                </div>
+
+
+                <div class="form-button mt-3">
+                  <button type="submit" class="btn btn-primary" [disabled]="formSignUp.invalid">Sign Up</button>
+                  <button type="submit" class="btn btn-outline-dark" routerLink="/home">Thoát</button>
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

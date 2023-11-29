@@ -1,0 +1,35 @@
+.container{
+  width: 800px;
+  font-size: 16px;
+}
+
+.payment-status {
+  width: 80%;
+  height: 90%;
+  margin: 10px auto;
+  position: relative;
+}
+
+.success-status {
+  background-color: #e6f7e8;
+  padding: 20px;
+  border: 1px solid #4CAF50;
+  border-radius: 5px;
+}
+
+.failure-status {
+  background-color: #f8d7da;
+  padding: 20px;
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+}
+
+.bank-info {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.back-button {
+  text-align: center;
+  margin-top: 20px;
+}

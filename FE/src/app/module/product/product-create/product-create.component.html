@@ -1,0 +1,153 @@
+<script src="../../../../assets/js/ScriptProduct.js"></script>
+<div class="d-flex justify-content-center" style="background-color: #DEDEDE;">
+  <div class="content_add col-xl-8">
+    <div class=" custom1"><h2>THÊM THÔNG TIN HÀNG HOÁ</h2></div>
+    <form [formGroup]="productForm" (ngSubmit)="create()">
+      <div class="row align-items-end">
+
+        <div class="form-group col-md-6">
+          <label for="brand">Tên Hãng</label>
+          <select class="form-control" id="brand">
+            <option selected>Chọn</option>
+            <option *ngFor="let brand of brandList" [ngValue]="brand.id">{{brand.brandName}}</option>
+          </select>
+          <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('brand').hasError(validation.type) && (productForm.get('brand').dirty || productForm.get('brand').touched)">
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="name">Tên Sản Phẩm</label>
+          <input type="text" class="form-control" id="name" placeholder="Nhấn vào để nhập" required>
+          <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('productName').hasError(validation.type) && (productForm.get('productName').dirty || productForm.get('productName').touched)">
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label> Hình ảnh hàng hoá</label>
+          <div class="avt_img d-flex flex-column">
+            <div class="avt_overlay">
+              <label for="fileInput" class="upload-label">
+                <img id="previewImage" src="#" alt="Preview Image">
+                <span id="chooseImageText">Chọn Ảnh</span>
+              </label>
+            </div>
+            <input type="file" id="fileInput" class="file-input" (change)="showPreview($event)" formControlName="imgUrl" accept=".png, .jpg, .jpeg, .gif">
+
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <div class="form-group">
+            <label for="sellingPrice">Giá bán</label>
+            <input type="number" class="form-control" placeholder="Nhấn vào để nhập" id="sellingPrice" required>
+            <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('sellingPrice').hasError(validation.type) && (productForm.get('sellingPrice').dirty || productForm.get('sellingPrice').touched)">
+              </div>
+            </div>
+          </span>
+          </div>
+
+          <div class="form-group">
+            <label for="screenSize">Kích thước màn hinh</label>
+            <input type="text" class="form-control" id="screenSize" placeholder="Nhấn vào để nhập" required>
+            <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('screenSize').hasError(validation.type) && (productForm.get('screenSize').dirty || productForm.get('screenSize').touched)">
+              </div>
+            </div>
+          </span>
+          </div>
+
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="frontCamera">Camera trước</label>
+          <input type="text" class="form-control" id="frontCamera" placeholder="Nhấn vào để nhập" required>
+          <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('frontCamera').hasError(validation.type) && (productForm.get('frontCamera').dirty || productForm.get('frontCamera').touched)">
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="backCamera">Camera sau</label>
+          <input type="text" class="form-control" id="backCamera" placeholder="Nhấn vào để nhập" required>
+          <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('backCamera').hasError(validation.type) && (productForm.get('backCamera').dirty || productForm.get('backCamera').touched)">
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="productCpu">Cpu</label>
+          <input type="text" class="form-control" id="productCpu" placeholder="Nhấn vào để nhập" required>
+          <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('productCpu').hasError(validation.type) && (productForm.get('productCpu').dirty || productForm.get('productCpu').touched)">
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="productStorage">Lưu trữ</label>
+          <input type="text" class="form-control" id="productStorage" placeholder="Nhấn vào để nhập" required>
+          <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('productStorage').hasError(validation.type) && (productForm.get('productStorage').dirty || productForm.get('productStorage').touched)">
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="description">Mô tả thêm</label>
+          <textarea class="form-control" id="description" required></textarea>
+          <span class="d-flex">
+            <div class="text-danger" *ngFor="let validation of validation_messages.brand">
+              <div class="error-message"
+                   *ngIf="productForm.get('description').hasError(validation.type) && (productForm.get('description').dirty || productForm.get('description').touched)">
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <div>
+            <button type="submit" style="margin-right: 10px" class="btn btn-outline-warning" [disabled]="isLoading">
+              <span *ngIf="!isLoading">Xác Nhận</span>
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"
+                    aria-hidden="true"></span>
+              <span *ngIf="isLoading" class="ms-2">Đang thêm...</span>
+            </button>
+          </div>
+          <div>
+            <a href="#" class="btn_action" >Quay Lại</a>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
